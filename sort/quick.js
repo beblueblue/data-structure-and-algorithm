@@ -9,7 +9,7 @@ import { swap, getRandomIntInclusive } from "./sort-common";
  * @param { Number } low 
  * @param { Number } high 
  */
-export function quickSort(array = [], low = 0, high = array.length - 1){
+function quickSort(array = [], low = 0, high = array.length - 1){
   if(low < high) {
     const partitionIndex = partition(array, low, high);
     quickSort(array, low, partitionIndex - 1);
@@ -33,7 +33,7 @@ function partition(arr, left, right){
   return pivotIndex;
 }
 // 双向扫描
-function partition2(arr, left, right) {
+function partitionDouble(arr, left, right) {
   // 缓存主元，选取最左侧
   const pivot = arr[left];
   // 缓存扫描索引
@@ -60,5 +60,11 @@ function partition2(arr, left, right) {
 function randomPartition(arr, left, right) {
   const randomIndex = getRandomIntInclusive(left, right);
   swap(arr, left, randomIndex)
-  return partition2(arr, left, right);
+  return partitionDouble(arr, left, right);
+}
+
+export {
+  quickSort,
+  partitionDouble,
+  randomPartition,
 }
